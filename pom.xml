@@ -10,6 +10,12 @@
     <name>hibernate-task</name>
     <description>hibernate-task</description>
 
+    <developers>
+        <developer>
+            <name>Adilov Abdubosit</name>
+        </developer>
+    </developers>
+
     <repositories>
         <repository>
             <id>central</id>
@@ -31,6 +37,7 @@
         <ehcache.version>3.10.8</ehcache.version>
         <hibernate.validator.version>8.0.0.Final</hibernate.validator.version>
         <validation.api.version>3.0.2</validation.api.version>
+        <expressly.version>5.0.0</expressly.version>
         <flyway.core.version>9.16.0</flyway.core.version>
         <postgresql.version>42.6.0</postgresql.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -51,14 +58,37 @@
             <version>${hibernate.core.version}</version>
         </dependency>
 
-        <!-- API for 2nd Level Cache TODO-->
-
+        <!-- API for 2nd Level Cache -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-jcache</artifactId>
+            <version>${hibernate.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.glassfish.jaxb</groupId>
+                    <artifactId>jaxb-runtime</artifactId>
+                </exclusion>
+            </exclusions>
+            <classifier>jakarta</classifier>
+        </dependency>
 
         <!-- Hibernate Validator (Bean Validation API implementation) -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.validator.version}</version>
+        </dependency>
+
+        <!-- Expression Language implementation required by Hibernate Validator -->
+        <dependency>
+            <groupId>org.glassfish.expressly</groupId>
+            <artifactId>expressly</artifactId>
+            <version>${expressly.version}</version>
         </dependency>
 
         <!-- Bean Validation API -->
@@ -93,6 +123,7 @@
     </dependencies>
 
     <build>
+        <finalName>jpa-${project.version}</finalName>
         <plugins>
             <!-- Maven Compiler Plugin -->
             <plugin>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:55432/mydatabase</property>
+        <property name="hibernate.connection.username">myuser</property>
+        <property name="hibernate.connection.password">secret</property>
+        <property name="hibernate.connection.pool_size">5</property>
+
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">false</property>
+        <property name="hibernate.highlight_sql">false</property>
+
+        <property name="hibernate.generate_statistics">true</property>
+
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.internal.JCacheRegionFactory</property>
+        <property name="hibernate.javax.cache.uri">ehcache.xml</property>
+        <property name="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</property>
+
+        <mapping class="edu.epam.fop.web.jpa.entity.Department"/>
+        <mapping class="edu.epam.fop.web.jpa.entity.Student"/>
+        <mapping class="edu.epam.fop.web.jpa.entity.Course"/>
+        <mapping class="edu.epam.fop.web.jpa.entity.Discipline"/>
+        <mapping class="edu.epam.fop.web.jpa.entity.DisciplineCourse"/>
+        <mapping class="edu.epam.fop.web.jpa.entity.Grade"/>
+    </session-factory>
+</hibernate-configuration>
